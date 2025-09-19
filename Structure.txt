@@ -1,0 +1,1269 @@
+.
+├── app.json
+├── app.ts
+├── CODE_OF_CONDUCT.md
+├── config
+│   ├── 7ms.yml
+│   ├── addo.yml
+│   ├── bodgeit.yml
+│   ├── ctf.yml
+│   ├── default.yml
+│   ├── defcon33.yml
+│   ├── fbctf.yml
+│   ├── juicebox.yml
+│   ├── mozilla.yml
+│   ├── oss.yml
+│   ├── quiet.yml
+│   ├── test.yml
+│   ├── tutorial.yml
+│   └── unsafe.yml
+├── config.schema.yml
+├── CONTRIBUTING.md
+├── crowdin.yaml
+├── ctf.key
+├── cypress.config.ts
+├── data
+│   ├── chatbot
+│   │   └── .gitkeep
+│   ├── datacache.ts
+│   ├── datacreator.ts
+│   ├── mongodb.ts
+│   ├── static
+│   │   ├── botDefaultTrainingData.json
+│   │   ├── challenges.yml
+│   │   ├── codefixes
+│   │   │   ├── accessLogDisclosureChallenge_1_correct.ts
+│   │   │   ├── accessLogDisclosureChallenge_2.ts
+│   │   │   ├── accessLogDisclosureChallenge_3.ts
+│   │   │   ├── accessLogDisclosureChallenge_4.ts
+│   │   │   ├── accessLogDisclosureChallenge.info.yml
+│   │   │   ├── adminSectionChallenge_1_correct.ts
+│   │   │   ├── adminSectionChallenge_2.ts
+│   │   │   ├── adminSectionChallenge_3.ts
+│   │   │   ├── adminSectionChallenge_4.ts
+│   │   │   ├── adminSectionChallenge.info.yml
+│   │   │   ├── changeProductChallenge_1.ts
+│   │   │   ├── changeProductChallenge_2.ts
+│   │   │   ├── changeProductChallenge_3_correct.ts
+│   │   │   ├── changeProductChallenge_4.ts
+│   │   │   ├── changeProductChallenge.info.yml
+│   │   │   ├── dbSchemaChallenge_1.ts
+│   │   │   ├── dbSchemaChallenge_2_correct.ts
+│   │   │   ├── dbSchemaChallenge_3.ts
+│   │   │   ├── dbSchemaChallenge.info.yml
+│   │   │   ├── directoryListingChallenge_1_correct.ts
+│   │   │   ├── directoryListingChallenge_2.ts
+│   │   │   ├── directoryListingChallenge_3.ts
+│   │   │   ├── directoryListingChallenge_4.ts
+│   │   │   ├── directoryListingChallenge.info.yml
+│   │   │   ├── .editorconfig
+│   │   │   ├── exposedMetricsChallenge_1.ts
+│   │   │   ├── exposedMetricsChallenge_2.ts
+│   │   │   ├── exposedMetricsChallenge_3_correct.ts
+│   │   │   ├── exposedMetricsChallenge.info.yml
+│   │   │   ├── forgedReviewChallenge_1.ts
+│   │   │   ├── forgedReviewChallenge_2_correct.ts
+│   │   │   ├── forgedReviewChallenge_3.ts
+│   │   │   ├── forgedReviewChallenge.info.yml
+│   │   │   ├── localXssChallenge_1.ts
+│   │   │   ├── localXssChallenge_2_correct.ts
+│   │   │   ├── localXssChallenge_3.ts
+│   │   │   ├── localXssChallenge_4.ts
+│   │   │   ├── localXssChallenge.info.yml
+│   │   │   ├── loginAdminChallenge_1.ts
+│   │   │   ├── loginAdminChallenge_2.ts
+│   │   │   ├── loginAdminChallenge_3.ts
+│   │   │   ├── loginAdminChallenge_4_correct.ts
+│   │   │   ├── loginAdminChallenge.info.yml
+│   │   │   ├── loginBenderChallenge_1.ts
+│   │   │   ├── loginBenderChallenge_2_correct.ts
+│   │   │   ├── loginBenderChallenge_3.ts
+│   │   │   ├── loginBenderChallenge_4.ts
+│   │   │   ├── loginBenderChallenge.info.yml
+│   │   │   ├── loginJimChallenge_1_correct.ts
+│   │   │   ├── loginJimChallenge_2.ts
+│   │   │   ├── loginJimChallenge_3.ts
+│   │   │   ├── loginJimChallenge_4.ts
+│   │   │   ├── loginJimChallenge.info.yml
+│   │   │   ├── nftMintChallenge_1.sol
+│   │   │   ├── nftMintChallenge_2.sol
+│   │   │   ├── nftMintChallenge_3.sol
+│   │   │   ├── nftMintChallenge_4_correct.sol
+│   │   │   ├── nftMintChallenge.info.yml
+│   │   │   ├── nftUnlockChallenge_1.sol
+│   │   │   ├── nftUnlockChallenge_2_correct.sol
+│   │   │   ├── nftUnlockChallenge_3.sol
+│   │   │   ├── nftUnlockChallenge_4.sol
+│   │   │   ├── nftUnlockChallenge.info.yml
+│   │   │   ├── noSqlReviewsChallenge_1.ts
+│   │   │   ├── noSqlReviewsChallenge_2.ts
+│   │   │   ├── noSqlReviewsChallenge_3_correct.ts
+│   │   │   ├── noSqlReviewsChallenge.info.yml
+│   │   │   ├── redirectChallenge_1.ts
+│   │   │   ├── redirectChallenge_2.ts
+│   │   │   ├── redirectChallenge_3.ts
+│   │   │   ├── redirectChallenge_4_correct.ts
+│   │   │   ├── redirectChallenge.info.yml
+│   │   │   ├── redirectCryptoCurrencyChallenge_1.ts
+│   │   │   ├── redirectCryptoCurrencyChallenge_2.ts
+│   │   │   ├── redirectCryptoCurrencyChallenge_3_correct.ts
+│   │   │   ├── redirectCryptoCurrencyChallenge_4.ts
+│   │   │   ├── redirectCryptoCurrencyChallenge.info.yml
+│   │   │   ├── registerAdminChallenge_1.ts
+│   │   │   ├── registerAdminChallenge_2.ts
+│   │   │   ├── registerAdminChallenge_3_correct.ts
+│   │   │   ├── registerAdminChallenge_4.ts
+│   │   │   ├── registerAdminChallenge.info.yml
+│   │   │   ├── resetPasswordBenderChallenge_1.yml
+│   │   │   ├── resetPasswordBenderChallenge_2_correct.yml
+│   │   │   ├── resetPasswordBenderChallenge_3.yml
+│   │   │   ├── resetPasswordBenderChallenge.info.yml
+│   │   │   ├── resetPasswordBjoernChallenge_1_correct.yml
+│   │   │   ├── resetPasswordBjoernChallenge_2.yml
+│   │   │   ├── resetPasswordBjoernChallenge_3.yml
+│   │   │   ├── resetPasswordBjoernChallenge.info.yml
+│   │   │   ├── resetPasswordBjoernOwaspChallenge_1.yml
+│   │   │   ├── resetPasswordBjoernOwaspChallenge_2_correct.yml
+│   │   │   ├── resetPasswordBjoernOwaspChallenge_3.yml
+│   │   │   ├── resetPasswordBjoernOwaspChallenge.info.yml
+│   │   │   ├── resetPasswordJimChallenge_1.yml
+│   │   │   ├── resetPasswordJimChallenge_2.yml
+│   │   │   ├── resetPasswordJimChallenge_3_correct.yml
+│   │   │   ├── resetPasswordJimChallenge.info.yml
+│   │   │   ├── resetPasswordMortyChallenge_1.ts
+│   │   │   ├── resetPasswordMortyChallenge_2.ts
+│   │   │   ├── resetPasswordMortyChallenge_3.ts
+│   │   │   ├── resetPasswordMortyChallenge_4_correct.ts
+│   │   │   ├── resetPasswordMortyChallenge.info.yml
+│   │   │   ├── resetPasswordUvoginChallenge_1.yml
+│   │   │   ├── resetPasswordUvoginChallenge_2.yml
+│   │   │   ├── resetPasswordUvoginChallenge_3_correct.yml
+│   │   │   ├── resetPasswordUvoginChallenge.info.yml
+│   │   │   ├── restfulXssChallenge_1_correct.ts
+│   │   │   ├── restfulXssChallenge_2.ts
+│   │   │   ├── restfulXssChallenge_3.ts
+│   │   │   ├── restfulXssChallenge_4.ts
+│   │   │   ├── restfulXssChallenge.info.yml
+│   │   │   ├── scoreBoardChallenge_1_correct.ts
+│   │   │   ├── scoreBoardChallenge_2.ts
+│   │   │   ├── scoreBoardChallenge_3.ts
+│   │   │   ├── scoreBoardChallenge.info.yml
+│   │   │   ├── tokenSaleChallenge_1.ts
+│   │   │   ├── tokenSaleChallenge_2.ts
+│   │   │   ├── tokenSaleChallenge_3_correct.ts
+│   │   │   ├── tokenSaleChallenge.info.yml
+│   │   │   ├── unionSqlInjectionChallenge_1.ts
+│   │   │   ├── unionSqlInjectionChallenge_2_correct.ts
+│   │   │   ├── unionSqlInjectionChallenge_3.ts
+│   │   │   ├── unionSqlInjectionChallenge.info.yml
+│   │   │   ├── weakPasswordChallenge_1_correct.ts
+│   │   │   ├── weakPasswordChallenge_2.ts
+│   │   │   ├── weakPasswordChallenge_3.ts
+│   │   │   ├── weakPasswordChallenge_4.ts
+│   │   │   ├── weakPasswordChallenge.info.yml
+│   │   │   ├── web3SandboxChallenge_1_correct.ts
+│   │   │   ├── web3SandboxChallenge_2.ts
+│   │   │   ├── web3SandboxChallenge_3.ts
+│   │   │   ├── web3SandboxChallenge.info.yml
+│   │   │   ├── web3WalletChallenge_1.sol
+│   │   │   ├── web3WalletChallenge_2.sol
+│   │   │   ├── web3WalletChallenge_3_correct.sol
+│   │   │   ├── web3WalletChallenge_4.sol
+│   │   │   ├── web3WalletChallenge.info.yml
+│   │   │   ├── xssBonusChallenge_1_correct.ts
+│   │   │   ├── xssBonusChallenge_2.ts
+│   │   │   ├── xssBonusChallenge_3.ts
+│   │   │   ├── xssBonusChallenge_4.ts
+│   │   │   └── xssBonusChallenge.info.yml
+│   │   ├── contractABIs.ts
+│   │   ├── deliveries.yml
+│   │   ├── i18n
+│   │   │   ├── ar_SA.json
+│   │   │   ├── az_AZ.json
+│   │   │   ├── bg_BG.json
+│   │   │   ├── bn_BD.json
+│   │   │   ├── ca_ES.json
+│   │   │   ├── cs_CZ.json
+│   │   │   ├── da_DK.json
+│   │   │   ├── de_CH.json
+│   │   │   ├── de_DE.json
+│   │   │   ├── el_GR.json
+│   │   │   ├── en.json
+│   │   │   ├── es_ES.json
+│   │   │   ├── et_EE.json
+│   │   │   ├── fi_FI.json
+│   │   │   ├── fr_FR.json
+│   │   │   ├── ga_IE.json
+│   │   │   ├── he_IL.json
+│   │   │   ├── hi_IN.json
+│   │   │   ├── hu_HU.json
+│   │   │   ├── id_ID.json
+│   │   │   ├── it_IT.json
+│   │   │   ├── ja_JP.json
+│   │   │   ├── ka_GE.json
+│   │   │   ├── ko_KR.json
+│   │   │   ├── lv_LV.json
+│   │   │   ├── my_MM.json
+│   │   │   ├── nl_NL.json
+│   │   │   ├── no_NO.json
+│   │   │   ├── pl_PL.json
+│   │   │   ├── pt_BR.json
+│   │   │   ├── pt_PT.json
+│   │   │   ├── ro_RO.json
+│   │   │   ├── ru_RU.json
+│   │   │   ├── si_LK.json
+│   │   │   ├── sv_SE.json
+│   │   │   ├── th_TH.json
+│   │   │   ├── tlh_AA.json
+│   │   │   ├── tr_TR.json
+│   │   │   ├── uk_UA.json
+│   │   │   ├── zh_CN.json
+│   │   │   ├── zh_HK.json
+│   │   │   └── zh_TW.json
+│   │   ├── legal.md
+│   │   ├── locales.json
+│   │   ├── owasp_promo.vtt
+│   │   ├── securityQuestions.yml
+│   │   ├── users.yml
+│   │   └── web3-snippets
+│   │       ├── BeeFaucet.sol
+│   │       ├── BEEToken.sol
+│   │       ├── ETHWalletBank.sol
+│   │       ├── HoneyPotNFT.sol
+│   │       └── JuiceShopSBT.sol
+│   ├── staticData.ts
+│   └── types.ts
+├── .dockerignore
+├── encryptionkeys
+│   ├── jwt.pub
+│   └── premium.key
+├── .eslintrc.js
+├── frontend
+│   ├── angular.json
+│   ├── .browserslistrc
+│   ├── .editorconfig
+│   ├── .eslintrc.js
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── package.json
+│   ├── src
+│   │   ├── app
+│   │   │   ├── about
+│   │   │   │   ├── about.component.html
+│   │   │   │   ├── about.component.scss
+│   │   │   │   ├── about.component.spec.ts
+│   │   │   │   └── about.component.ts
+│   │   │   ├── accounting
+│   │   │   │   ├── accounting.component.html
+│   │   │   │   ├── accounting.component.scss
+│   │   │   │   ├── accounting.component.spec.ts
+│   │   │   │   └── accounting.component.ts
+│   │   │   ├── address
+│   │   │   │   ├── address.component.html
+│   │   │   │   ├── address.component.scss
+│   │   │   │   ├── address.component.spec.ts
+│   │   │   │   └── address.component.ts
+│   │   │   ├── address-create
+│   │   │   │   ├── address-create.component.html
+│   │   │   │   ├── address-create.component.scss
+│   │   │   │   ├── address-create.component.spec.ts
+│   │   │   │   └── address-create.component.ts
+│   │   │   ├── address-select
+│   │   │   │   ├── address-select.component.html
+│   │   │   │   ├── address-select.component.scss
+│   │   │   │   ├── address-select.component.spec.ts
+│   │   │   │   └── address-select.component.ts
+│   │   │   ├── administration
+│   │   │   │   ├── administration.component.html
+│   │   │   │   ├── administration.component.scss
+│   │   │   │   ├── administration.component.spec.ts
+│   │   │   │   └── administration.component.ts
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.scss
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.guard.spec.ts
+│   │   │   ├── app.guard.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── app.routing.ts
+│   │   │   ├── basket
+│   │   │   │   ├── basket.component.html
+│   │   │   │   ├── basket.component.scss
+│   │   │   │   ├── basket.component.spec.ts
+│   │   │   │   └── basket.component.ts
+│   │   │   ├── challenge-solved-notification
+│   │   │   │   ├── challenge-solved-notification.component.html
+│   │   │   │   ├── challenge-solved-notification.component.scss
+│   │   │   │   ├── challenge-solved-notification.component.spec.ts
+│   │   │   │   └── challenge-solved-notification.component.ts
+│   │   │   ├── challenge-status-badge
+│   │   │   │   ├── challenge-status-badge.component.html
+│   │   │   │   ├── challenge-status-badge.component.scss
+│   │   │   │   ├── challenge-status-badge.component.spec.ts
+│   │   │   │   └── challenge-status-badge.component.ts
+│   │   │   ├── change-password
+│   │   │   │   ├── change-password.component.html
+│   │   │   │   ├── change-password.component.scss
+│   │   │   │   ├── change-password.component.spec.ts
+│   │   │   │   └── change-password.component.ts
+│   │   │   ├── chatbot
+│   │   │   │   ├── chatbot.component.html
+│   │   │   │   ├── chatbot.component.scss
+│   │   │   │   ├── chatbot.component.spec.ts
+│   │   │   │   └── chatbot.component.ts
+│   │   │   ├── code-area
+│   │   │   │   ├── code-area.component.html
+│   │   │   │   ├── code-area.component.scss
+│   │   │   │   ├── code-area.component.spec.ts
+│   │   │   │   └── code-area.component.ts
+│   │   │   ├── code-fixes
+│   │   │   │   ├── code-fixes.component.html
+│   │   │   │   ├── code-fixes.component.scss
+│   │   │   │   ├── code-fixes.component.spec.ts
+│   │   │   │   └── code-fixes.component.ts
+│   │   │   ├── code-snippet
+│   │   │   │   ├── code-snippet.component.html
+│   │   │   │   ├── code-snippet.component.scss
+│   │   │   │   ├── code-snippet.component.spec.ts
+│   │   │   │   └── code-snippet.component.ts
+│   │   │   ├── complaint
+│   │   │   │   ├── complaint.component.html
+│   │   │   │   ├── complaint.component.scss
+│   │   │   │   ├── complaint.component.spec.ts
+│   │   │   │   └── complaint.component.ts
+│   │   │   ├── contact
+│   │   │   │   ├── contact.component.html
+│   │   │   │   ├── contact.component.scss
+│   │   │   │   ├── contact.component.spec.ts
+│   │   │   │   └── contact.component.ts
+│   │   │   ├── data-export
+│   │   │   │   ├── data-export.component.html
+│   │   │   │   ├── data-export.component.scss
+│   │   │   │   ├── data-export.component.spec.ts
+│   │   │   │   └── data-export.component.ts
+│   │   │   ├── delivery-method
+│   │   │   │   ├── delivery-method.component.html
+│   │   │   │   ├── delivery-method.component.scss
+│   │   │   │   ├── delivery-method.component.spec.ts
+│   │   │   │   └── delivery-method.component.ts
+│   │   │   ├── deluxe-user
+│   │   │   │   ├── deluxe-user.component.html
+│   │   │   │   ├── deluxe-user.component.scss
+│   │   │   │   ├── deluxe-user.component.spec.ts
+│   │   │   │   └── deluxe-user.component.ts
+│   │   │   ├── error-page
+│   │   │   │   ├── error-page.component.html
+│   │   │   │   ├── error-page.component.scss
+│   │   │   │   ├── error-page.component.spec.ts
+│   │   │   │   └── error-page.component.ts
+│   │   │   ├── faucet
+│   │   │   │   ├── faucet.component.html
+│   │   │   │   ├── faucet.component.scss
+│   │   │   │   ├── faucet.component.ts
+│   │   │   │   └── faucet.module.ts
+│   │   │   ├── feedback-details
+│   │   │   │   ├── feedback-details.component.html
+│   │   │   │   ├── feedback-details.component.scss
+│   │   │   │   ├── feedback-details.component.spec.ts
+│   │   │   │   └── feedback-details.component.ts
+│   │   │   ├── forgot-password
+│   │   │   │   ├── forgot-password.component.html
+│   │   │   │   ├── forgot-password.component.scss
+│   │   │   │   ├── forgot-password.component.spec.ts
+│   │   │   │   └── forgot-password.component.ts
+│   │   │   ├── last-login-ip
+│   │   │   │   ├── last-login-ip.component.html
+│   │   │   │   ├── last-login-ip.component.scss
+│   │   │   │   ├── last-login-ip.component.spec.ts
+│   │   │   │   └── last-login-ip.component.ts
+│   │   │   ├── login
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.scss
+│   │   │   │   ├── login.component.spec.ts
+│   │   │   │   └── login.component.ts
+│   │   │   ├── mat-search-bar
+│   │   │   │   ├── abstract-value-accessor.ts
+│   │   │   │   ├── mat-search-bar.component.html
+│   │   │   │   ├── mat-search-bar.component.scss
+│   │   │   │   └── mat-search-bar.component.ts
+│   │   │   ├── Models
+│   │   │   │   ├── backup.model.ts
+│   │   │   │   ├── challenge.model.ts
+│   │   │   │   ├── deliveryMethod.model.ts
+│   │   │   │   ├── hint.model.ts
+│   │   │   │   ├── product.model.ts
+│   │   │   │   ├── review.model.ts
+│   │   │   │   └── securityQuestion.model.ts
+│   │   │   ├── navbar
+│   │   │   │   ├── navbar.component.html
+│   │   │   │   ├── navbar.component.scss
+│   │   │   │   ├── navbar.component.spec.ts
+│   │   │   │   └── navbar.component.ts
+│   │   │   ├── nft-unlock
+│   │   │   │   ├── nft-unlock.component.html
+│   │   │   │   ├── nft-unlock.component.scss
+│   │   │   │   └── nft-unlock.component.ts
+│   │   │   ├── oauth
+│   │   │   │   ├── oauth.component.html
+│   │   │   │   ├── oauth.component.scss
+│   │   │   │   ├── oauth.component.spec.ts
+│   │   │   │   └── oauth.component.ts
+│   │   │   ├── order-completion
+│   │   │   │   ├── order-completion.component.html
+│   │   │   │   ├── order-completion.component.scss
+│   │   │   │   ├── order-completion.component.spec.ts
+│   │   │   │   └── order-completion.component.ts
+│   │   │   ├── order-history
+│   │   │   │   ├── order-history.component.html
+│   │   │   │   ├── order-history.component.scss
+│   │   │   │   ├── order-history.component.spec.ts
+│   │   │   │   └── order-history.component.ts
+│   │   │   ├── order-summary
+│   │   │   │   ├── order-summary.component.html
+│   │   │   │   ├── order-summary.component.scss
+│   │   │   │   ├── order-summary.component.spec.ts
+│   │   │   │   └── order-summary.component.ts
+│   │   │   ├── password-strength
+│   │   │   │   ├── password-strength.component.html
+│   │   │   │   ├── password-strength.component.scss
+│   │   │   │   ├── password-strength.component.spec.ts
+│   │   │   │   └── password-strength.component.ts
+│   │   │   ├── password-strength-info
+│   │   │   │   ├── password-strength-info.component.html
+│   │   │   │   ├── password-strength-info.component.scss
+│   │   │   │   ├── password-strength-info.component.spec.ts
+│   │   │   │   └── password-strength-info.component.ts
+│   │   │   ├── payment
+│   │   │   │   ├── payment.component.html
+│   │   │   │   ├── payment.component.scss
+│   │   │   │   ├── payment.component.spec.ts
+│   │   │   │   └── payment.component.ts
+│   │   │   ├── payment-method
+│   │   │   │   ├── payment-method.component.html
+│   │   │   │   ├── payment-method.component.scss
+│   │   │   │   ├── payment-method.component.spec.ts
+│   │   │   │   └── payment-method.component.ts
+│   │   │   ├── photo-wall
+│   │   │   │   ├── mime-type.validator.ts
+│   │   │   │   ├── photo-wall.component.html
+│   │   │   │   ├── photo-wall.component.scss
+│   │   │   │   ├── photo-wall.component.spec.ts
+│   │   │   │   └── photo-wall.component.ts
+│   │   │   ├── privacy-policy
+│   │   │   │   ├── privacy-policy.component.html
+│   │   │   │   ├── privacy-policy.component.scss
+│   │   │   │   ├── privacy-policy.component.spec.ts
+│   │   │   │   └── privacy-policy.component.ts
+│   │   │   ├── privacy-security
+│   │   │   │   ├── privacy-security.component.html
+│   │   │   │   ├── privacy-security.component.scss
+│   │   │   │   ├── privacy-security.component.spec.ts
+│   │   │   │   └── privacy-security.component.ts
+│   │   │   ├── product-details
+│   │   │   │   ├── product-details.component.html
+│   │   │   │   ├── product-details.component.scss
+│   │   │   │   ├── product-details.component.spec.ts
+│   │   │   │   └── product-details.component.ts
+│   │   │   ├── product-review-edit
+│   │   │   │   ├── product-review-edit.component.html
+│   │   │   │   ├── product-review-edit.component.scss
+│   │   │   │   ├── product-review-edit.component.spec.ts
+│   │   │   │   └── product-review-edit.component.ts
+│   │   │   ├── purchase-basket
+│   │   │   │   ├── purchase-basket.component.html
+│   │   │   │   ├── purchase-basket.component.scss
+│   │   │   │   ├── purchase-basket.component.spec.ts
+│   │   │   │   └── purchase-basket.component.ts
+│   │   │   ├── qr-code
+│   │   │   │   ├── qr-code.component.html
+│   │   │   │   ├── qr-code.component.scss
+│   │   │   │   ├── qr-code.component.spec.ts
+│   │   │   │   └── qr-code.component.ts
+│   │   │   ├── recycle
+│   │   │   │   ├── recycle.component.html
+│   │   │   │   ├── recycle.component.scss
+│   │   │   │   ├── recycle.component.spec.ts
+│   │   │   │   └── recycle.component.ts
+│   │   │   ├── register
+│   │   │   │   ├── register.component.html
+│   │   │   │   ├── register.component.scss
+│   │   │   │   ├── register.component.spec.ts
+│   │   │   │   └── register.component.ts
+│   │   │   ├── roles.ts
+│   │   │   ├── saved-address
+│   │   │   │   ├── saved-address.component.html
+│   │   │   │   ├── saved-address.component.scss
+│   │   │   │   ├── saved-address.component.spec.ts
+│   │   │   │   └── saved-address.component.ts
+│   │   │   ├── saved-payment-methods
+│   │   │   │   ├── saved-payment-methods.component.html
+│   │   │   │   ├── saved-payment-methods.component.scss
+│   │   │   │   ├── saved-payment-methods.component.spec.ts
+│   │   │   │   └── saved-payment-methods.component.ts
+│   │   │   ├── score-board
+│   │   │   │   ├── components
+│   │   │   │   │   ├── challenge-card
+│   │   │   │   │   │   ├── challenge-card.component.html
+│   │   │   │   │   │   ├── challenge-card.component.scss
+│   │   │   │   │   │   ├── challenge-card.component.spec.ts
+│   │   │   │   │   │   └── challenge-card.component.ts
+│   │   │   │   │   ├── challenges-unavailable-warning
+│   │   │   │   │   │   ├── challenges-unavailable-warning.component.html
+│   │   │   │   │   │   ├── challenges-unavailable-warning.component.scss
+│   │   │   │   │   │   ├── challenges-unavailable-warning.component.spec.ts
+│   │   │   │   │   │   └── challenges-unavailable-warning.component.ts
+│   │   │   │   │   ├── coding-challenge-progress-score-card
+│   │   │   │   │   │   ├── coding-challenge-progress-score-card.component.html
+│   │   │   │   │   │   ├── coding-challenge-progress-score-card.component.scss
+│   │   │   │   │   │   ├── coding-challenge-progress-score-card.component.spec.ts
+│   │   │   │   │   │   └── coding-challenge-progress-score-card.component.ts
+│   │   │   │   │   ├── difficulty-overview-score-card
+│   │   │   │   │   │   ├── difficulty-overview-score-card.component.html
+│   │   │   │   │   │   ├── difficulty-overview-score-card.component.scss
+│   │   │   │   │   │   ├── difficulty-overview-score-card.component.spec.ts
+│   │   │   │   │   │   └── difficulty-overview-score-card.component.ts
+│   │   │   │   │   ├── difficulty-stars
+│   │   │   │   │   │   ├── difficulty-stars.component.html
+│   │   │   │   │   │   ├── difficulty-stars.component.scss
+│   │   │   │   │   │   └── difficulty-stars.component.ts
+│   │   │   │   │   ├── filter-settings
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── category-filter
+│   │   │   │   │   │   │   │   ├── category-filter.component.html
+│   │   │   │   │   │   │   │   ├── category-filter.component.scss
+│   │   │   │   │   │   │   │   ├── category-filter.component.spec.ts
+│   │   │   │   │   │   │   │   └── category-filter.component.ts
+│   │   │   │   │   │   │   └── score-board-additional-settings-dialog
+│   │   │   │   │   │   │       ├── score-board-additional-settings-dialog.component.html
+│   │   │   │   │   │   │       ├── score-board-additional-settings-dialog.component.scss
+│   │   │   │   │   │   │       ├── score-board-additional-settings-dialog.component.spec.ts
+│   │   │   │   │   │   │       └── score-board-additional-settings-dialog.component.ts
+│   │   │   │   │   │   ├── filter-settings.component.html
+│   │   │   │   │   │   ├── filter-settings.component.scss
+│   │   │   │   │   │   ├── filter-settings.component.spec.ts
+│   │   │   │   │   │   ├── filter-settings.component.ts
+│   │   │   │   │   │   └── pipes
+│   │   │   │   │   │       ├── difficulty-selection-summary.pipe.spec.ts
+│   │   │   │   │   │       └── difficulty-selection-summary.pipe.ts
+│   │   │   │   │   ├── hacking-challenge-progress-score-card
+│   │   │   │   │   │   ├── hacking-challenge-progress-score-card.component.html
+│   │   │   │   │   │   ├── hacking-challenge-progress-score-card.component.scss
+│   │   │   │   │   │   ├── hacking-challenge-progress-score-card.component.spec.ts
+│   │   │   │   │   │   └── hacking-challenge-progress-score-card.component.ts
+│   │   │   │   │   ├── score-card
+│   │   │   │   │   │   ├── score-card.component.html
+│   │   │   │   │   │   ├── score-card.component.scss
+│   │   │   │   │   │   ├── score-card.component.spec.ts
+│   │   │   │   │   │   └── score-card.component.ts
+│   │   │   │   │   ├── tutorial-mode-warning
+│   │   │   │   │   │   ├── tutorial-mode-warning.component.html
+│   │   │   │   │   │   ├── tutorial-mode-warning.component.spec.ts
+│   │   │   │   │   │   └── tutorial-mode-warning.component.ts
+│   │   │   │   │   └── warning-card
+│   │   │   │   │       ├── warning-card.component.html
+│   │   │   │   │       ├── warning-card.component.scss
+│   │   │   │   │       └── warning-card.component.ts
+│   │   │   │   ├── filter-settings
+│   │   │   │   │   ├── FilterSetting.ts
+│   │   │   │   │   ├── query-params-converters.ts
+│   │   │   │   │   └── query-params-coverter.spec.ts
+│   │   │   │   ├── helpers
+│   │   │   │   │   ├── challenge-filtering.spec.ts
+│   │   │   │   │   ├── challenge-filtering.ts
+│   │   │   │   │   ├── challenge-sorting.spec.ts
+│   │   │   │   │   └── challenge-sorting.ts
+│   │   │   │   ├── score-board.component.html
+│   │   │   │   ├── score-board.component.scss
+│   │   │   │   ├── score-board.component.spec.ts
+│   │   │   │   ├── score-board.component.ts
+│   │   │   │   └── types
+│   │   │   │       └── EnrichedChallenge.ts
+│   │   │   ├── search-result
+│   │   │   │   ├── search-result.component.html
+│   │   │   │   ├── search-result.component.scss
+│   │   │   │   ├── search-result.component.spec.ts
+│   │   │   │   └── search-result.component.ts
+│   │   │   ├── server-started-notification
+│   │   │   │   ├── server-started-notification.component.html
+│   │   │   │   ├── server-started-notification.component.scss
+│   │   │   │   ├── server-started-notification.component.spec.ts
+│   │   │   │   └── server-started-notification.component.ts
+│   │   │   ├── Services
+│   │   │   │   ├── address.service.spec.ts
+│   │   │   │   ├── address.service.ts
+│   │   │   │   ├── administration.service.spec.ts
+│   │   │   │   ├── administration.service.ts
+│   │   │   │   ├── basket.service.spec.ts
+│   │   │   │   ├── basket.service.ts
+│   │   │   │   ├── captcha.service.spec.ts
+│   │   │   │   ├── captcha.service.ts
+│   │   │   │   ├── challenge.service.spec.ts
+│   │   │   │   ├── challenge.service.ts
+│   │   │   │   ├── chatbot.service.spec.ts
+│   │   │   │   ├── chatbot.service.ts
+│   │   │   │   ├── code-fixes.service.spec.ts
+│   │   │   │   ├── code-fixes.service.ts
+│   │   │   │   ├── code-snippet.service.spec.ts
+│   │   │   │   ├── code-snippet.service.ts
+│   │   │   │   ├── complaint.service.spec.ts
+│   │   │   │   ├── complaint.service.ts
+│   │   │   │   ├── configuration.service.spec.ts
+│   │   │   │   ├── configuration.service.ts
+│   │   │   │   ├── country-mapping.service.spec.ts
+│   │   │   │   ├── country-mapping.service.ts
+│   │   │   │   ├── data-subject.service.spec.ts
+│   │   │   │   ├── data-subject.service.ts
+│   │   │   │   ├── delivery.service.spec.ts
+│   │   │   │   ├── delivery.service.ts
+│   │   │   │   ├── feedback.service.spec.ts
+│   │   │   │   ├── feedback.service.ts
+│   │   │   │   ├── form-submit.service.spec.ts
+│   │   │   │   ├── form-submit.service.ts
+│   │   │   │   ├── hint.service.ts
+│   │   │   │   ├── hints.service.spec.ts
+│   │   │   │   ├── image-captcha.service.spec.ts
+│   │   │   │   ├── image-captcha.service.ts
+│   │   │   │   ├── keys.service.ts
+│   │   │   │   ├── languages.service.spec.ts
+│   │   │   │   ├── languages.service.ts
+│   │   │   │   ├── local-backup.service.spec.ts
+│   │   │   │   ├── local-backup.service.ts
+│   │   │   │   ├── order-history.service.spec.ts
+│   │   │   │   ├── order-history.service.ts
+│   │   │   │   ├── payment.service.spec.ts
+│   │   │   │   ├── payment.service.ts
+│   │   │   │   ├── photo-wall.service.spec.ts
+│   │   │   │   ├── photo-wall.service.ts
+│   │   │   │   ├── product-review.service.spec.ts
+│   │   │   │   ├── product-review.service.ts
+│   │   │   │   ├── product.service.spec.ts
+│   │   │   │   ├── product.service.ts
+│   │   │   │   ├── quantity.service.spec.ts
+│   │   │   │   ├── quantity.service.ts
+│   │   │   │   ├── recycle.service.spec.ts
+│   │   │   │   ├── recycle.service.ts
+│   │   │   │   ├── request.interceptor.ts
+│   │   │   │   ├── security-answer.service.spec.ts
+│   │   │   │   ├── security-answer.service.ts
+│   │   │   │   ├── security-question.service.spec.ts
+│   │   │   │   ├── security-question.service.ts
+│   │   │   │   ├── snack-bar-helper.service.spec.ts
+│   │   │   │   ├── snack-bar-helper.service.ts
+│   │   │   │   ├── socket-io.service.spec.ts
+│   │   │   │   ├── socket-io.service.ts
+│   │   │   │   ├── track-order.service.spec.ts
+│   │   │   │   ├── track-order.service.ts
+│   │   │   │   ├── two-factor-auth-service.spec.ts
+│   │   │   │   ├── two-factor-auth-service.ts
+│   │   │   │   ├── user.service.spec.ts
+│   │   │   │   ├── user.service.ts
+│   │   │   │   ├── vuln-lines.service.spec.ts
+│   │   │   │   ├── vuln-lines.service.ts
+│   │   │   │   ├── wallet.service.spec.ts
+│   │   │   │   ├── wallet.service.ts
+│   │   │   │   ├── window-ref.service.spec.ts
+│   │   │   │   └── window-ref.service.ts
+│   │   │   ├── sidenav
+│   │   │   │   ├── sidenav.component.html
+│   │   │   │   ├── sidenav.component.scss
+│   │   │   │   ├── sidenav.component.spec.ts
+│   │   │   │   └── sidenav.component.ts
+│   │   │   ├── token-sale
+│   │   │   │   ├── token-sale.component.html
+│   │   │   │   ├── token-sale.component.scss
+│   │   │   │   ├── token-sale.component.spec.ts
+│   │   │   │   └── token-sale.component.ts
+│   │   │   ├── track-result
+│   │   │   │   ├── track-result.component.html
+│   │   │   │   ├── track-result.component.scss
+│   │   │   │   ├── track-result.component.spec.ts
+│   │   │   │   └── track-result.component.ts
+│   │   │   ├── two-factor-auth
+│   │   │   │   ├── two-factor-auth.component.html
+│   │   │   │   ├── two-factor-auth.component.scss
+│   │   │   │   ├── two-factor-auth.component.spec.ts
+│   │   │   │   └── two-factor-auth.component.ts
+│   │   │   ├── two-factor-auth-enter
+│   │   │   │   ├── two-factor-auth-enter.component.html
+│   │   │   │   ├── two-factor-auth-enter.component.scss
+│   │   │   │   ├── two-factor-auth-enter.component.spec.ts
+│   │   │   │   └── two-factor-auth-enter.component.ts
+│   │   │   ├── user-details
+│   │   │   │   ├── user-details.component.html
+│   │   │   │   ├── user-details.component.scss
+│   │   │   │   ├── user-details.component.spec.ts
+│   │   │   │   └── user-details.component.ts
+│   │   │   ├── wallet
+│   │   │   │   ├── wallet.component.html
+│   │   │   │   ├── wallet.component.scss
+│   │   │   │   ├── wallet.component.spec.ts
+│   │   │   │   └── wallet.component.ts
+│   │   │   ├── wallet-web3
+│   │   │   │   ├── wallet-web3.component.html
+│   │   │   │   ├── wallet-web3.component.scss
+│   │   │   │   ├── wallet-web3.component.ts
+│   │   │   │   └── wallet-web3.module.ts
+│   │   │   ├── web3-sandbox
+│   │   │   │   ├── web3-sandbox.component.html
+│   │   │   │   ├── web3-sandbox.component.scss
+│   │   │   │   ├── web3-sandbox.component.ts
+│   │   │   │   └── web3-sandbox.module.ts
+│   │   │   ├── welcome
+│   │   │   │   ├── welcome.component.html
+│   │   │   │   ├── welcome.component.scss
+│   │   │   │   ├── welcome.component.spec.ts
+│   │   │   │   └── welcome.component.ts
+│   │   │   └── welcome-banner
+│   │   │       ├── welcome-banner.component.html
+│   │   │       ├── welcome-banner.component.scss
+│   │   │       ├── welcome-banner.component.spec.ts
+│   │   │       └── welcome-banner.component.ts
+│   │   ├── assets
+│   │   │   ├── i18n
+│   │   │   │   ├── ar_SA.json
+│   │   │   │   ├── az_AZ.json
+│   │   │   │   ├── bg_BG.json
+│   │   │   │   ├── bn_BD.json
+│   │   │   │   ├── ca_ES.json
+│   │   │   │   ├── cs_CZ.json
+│   │   │   │   ├── da_DK.json
+│   │   │   │   ├── de_CH.json
+│   │   │   │   ├── de_DE.json
+│   │   │   │   ├── el_GR.json
+│   │   │   │   ├── en.json
+│   │   │   │   ├── es_ES.json
+│   │   │   │   ├── et_EE.json
+│   │   │   │   ├── fi_FI.json
+│   │   │   │   ├── fr_FR.json
+│   │   │   │   ├── ga_IE.json
+│   │   │   │   ├── he_IL.json
+│   │   │   │   ├── hi_IN.json
+│   │   │   │   ├── hu_HU.json
+│   │   │   │   ├── id_ID.json
+│   │   │   │   ├── it_IT.json
+│   │   │   │   ├── ja_JP.json
+│   │   │   │   ├── ka_GE.json
+│   │   │   │   ├── ko_KR.json
+│   │   │   │   ├── lv_LV.json
+│   │   │   │   ├── my_MM.json
+│   │   │   │   ├── nl_NL.json
+│   │   │   │   ├── no_NO.json
+│   │   │   │   ├── pl_PL.json
+│   │   │   │   ├── pt_BR.json
+│   │   │   │   ├── pt_PT.json
+│   │   │   │   ├── ro_RO.json
+│   │   │   │   ├── ru_RU.json
+│   │   │   │   ├── si_LK.json
+│   │   │   │   ├── sv_SE.json
+│   │   │   │   ├── th_TH.json
+│   │   │   │   ├── tlh_AA.json
+│   │   │   │   ├── tr_TR.json
+│   │   │   │   ├── uk_UA.json
+│   │   │   │   ├── zh_CN.json
+│   │   │   │   ├── zh_HK.json
+│   │   │   │   └── zh_TW.json
+│   │   │   ├── private
+│   │   │   │   ├── CopyShader.js
+│   │   │   │   ├── dat.gui.min.js
+│   │   │   │   ├── earth_normalmap_flat4k.jpg
+│   │   │   │   ├── earthspec4k.jpg
+│   │   │   │   ├── EffectComposer.js
+│   │   │   │   ├── fair_clouds_4k.png
+│   │   │   │   ├── JuiceShop_Wallpaper_1920x1080_VR.jpg
+│   │   │   │   ├── MaskPass.js
+│   │   │   │   ├── orangemap2k.jpg
+│   │   │   │   ├── OrbitControls.js
+│   │   │   │   ├── RenderPass.js
+│   │   │   │   ├── ShaderPass.js
+│   │   │   │   ├── starry_background.jpg
+│   │   │   │   ├── stats.min.js
+│   │   │   │   ├── three.js
+│   │   │   │   └── threejs-demo.html
+│   │   │   └── public
+│   │   │       ├── ContractABIs.ts
+│   │   │       ├── css
+│   │   │       │   ├── dataErasure.css
+│   │   │       │   └── userProfile.css
+│   │   │       ├── favicon_ctf.ico
+│   │   │       ├── favicon_js.ico
+│   │   │       ├── images
+│   │   │       │   ├── BeeOwner.png
+│   │   │       │   ├── carousel
+│   │   │       │   │   ├── 1.jpg
+│   │   │       │   │   ├── 2.jpg
+│   │   │       │   │   ├── 3.jpg
+│   │   │       │   │   ├── 4.jpg
+│   │   │       │   │   ├── 5.png
+│   │   │       │   │   ├── 6.jpg
+│   │   │       │   │   └── 7.jpg
+│   │   │       │   ├── deluxe
+│   │   │       │   │   └── blankBoxes.png
+│   │   │       │   ├── HoneyPot.png
+│   │   │       │   ├── JuiceShopCTF_Logo_400px.png
+│   │   │       │   ├── JuiceShopCTF_Logo.png
+│   │   │       │   ├── JuiceShop_Logo_100px.png
+│   │   │       │   ├── JuiceShop_Logo_400px.png
+│   │   │       │   ├── JuiceShop_Logo_50px.png
+│   │   │       │   ├── JuiceShop_Logo.ai
+│   │   │       │   ├── JuiceShop_Logo.png
+│   │   │       │   ├── JuiceShop_Logo.svg
+│   │   │       │   ├── JuicyBot_MedicalMask.png
+│   │   │       │   ├── JuicyBot.png
+│   │   │       │   ├── JuicyChatBot.png
+│   │   │       │   ├── juicyEvilWasp.png
+│   │   │       │   ├── padding
+│   │   │       │   │   ├── 11px.png
+│   │   │       │   │   ├── 19px.png
+│   │   │       │   │   ├── 1px.png
+│   │   │       │   │   ├── 56px.png
+│   │   │       │   │   └── 81px.png
+│   │   │       │   ├── products
+│   │   │       │   │   ├── 20th.jpeg
+│   │   │       │   │   ├── 3d_keychain.jpg
+│   │   │       │   │   ├── apple_juice.jpg
+│   │   │       │   │   ├── apple_pressings.jpg
+│   │   │       │   │   ├── artwork2.jpg
+│   │   │       │   │   ├── artwork.jpg
+│   │   │       │   │   ├── banana_juice.jpg
+│   │   │       │   │   ├── card_alpha.jpg
+│   │   │       │   │   ├── carrot_juice.jpeg
+│   │   │       │   │   ├── ccg_common.png
+│   │   │       │   │   ├── ccg_foil.png
+│   │   │       │   │   ├── coaster.jpg
+│   │   │       │   │   ├── cover_small.jpg
+│   │   │       │   │   ├── eggfruit_juice.jpg
+│   │   │       │   │   ├── fan_facemask.jpg
+│   │   │       │   │   ├── fan_girlie.jpg
+│   │   │       │   │   ├── fan_hoodie.jpg
+│   │   │       │   │   ├── fan_mug.jpg
+│   │   │       │   │   ├── fan_shirt.jpg
+│   │   │       │   │   ├── fruit_press.jpg
+│   │   │       │   │   ├── green_smoothie.jpg
+│   │   │       │   │   ├── holo_sticker.png
+│   │   │       │   │   ├── iron-on.jpg
+│   │   │       │   │   ├── JuiceShop.stl
+│   │   │       │   │   ├── juicy_chatbot.jpg
+│   │   │       │   │   ├── lego_case.jpg
+│   │   │       │   │   ├── lemon_juice.jpg
+│   │   │       │   │   ├── magnets.jpg
+│   │   │       │   │   ├── melon_bike.jpeg
+│   │   │       │   │   ├── no-results.png
+│   │   │       │   │   ├── orange_juice.jpg
+│   │   │       │   │   ├── permafrost.jpg
+│   │   │       │   │   ├── quince.jpg
+│   │   │       │   │   ├── raspberry_juice.jpg
+│   │   │       │   │   ├── snakes_ladders.jpg
+│   │   │       │   │   ├── snakes_ladders_m.jpg
+│   │   │       │   │   ├── squareBox1-40x40x40.stl
+│   │   │       │   │   ├── sticker_page.jpg
+│   │   │       │   │   ├── sticker.png
+│   │   │       │   │   ├── stickersheet_se.png
+│   │   │       │   │   ├── sticker_single.jpg
+│   │   │       │   │   ├── strawberry_juice.jpeg
+│   │   │       │   │   ├── tattoo.jpg
+│   │   │       │   │   ├── thingie1.jpg
+│   │   │       │   │   ├── undefined.png
+│   │   │       │   │   ├── user_day_ticket.png
+│   │   │       │   │   ├── velcro-patch.jpg
+│   │   │       │   │   ├── waspy.png
+│   │   │       │   │   └── woodruff_syrup.jpg
+│   │   │       │   ├── uploads
+│   │   │       │   │   ├── 12.png
+│   │   │       │   │   ├── 13.jpg
+│   │   │       │   │   ├── 20.jpg
+│   │   │       │   │   ├── BeeHaven.png
+│   │   │       │   │   ├── building-something-literally-bottom-up-1721152342603.jpg
+│   │   │       │   │   ├── defaultAdmin.png
+│   │   │       │   │   ├── default.svg
+│   │   │       │   │   ├── everything-up-and-running!-1721152385146.jpg
+│   │   │       │   │   ├── favorite-hiking-place.png
+│   │   │       │   │   ├── IMG_4253.jpg
+│   │   │       │   │   ├── magn(et)ificent!-1571814229653.jpg
+│   │   │       │   │   ├── my-rare-collectors-item!-[̲̅$̲̅(̲̅-͡°-͜ʖ-͡°̲̅)̲̅$̲̅]-1572603645543.jpg
+│   │   │       │   │   ├── putting-in-the-hardware-1721152366854.jpg
+│   │   │       │   │   ├── sorted-the-pieces,-starting-assembly-process-1721152307290.jpg
+│   │   │       │   │   └── ᓚᘏᗢ-#zatschi-#whoneedsfourlegs-1572600969477.jpg
+│   │   │       │   └── Welcome_Banner.svg
+│   │   │       └── videos
+│   │   │           └── owasp_promo.mp4
+│   │   ├── confetti
+│   │   │   └── index.ts
+│   │   ├── environments
+│   │   │   ├── environment.prod.ts
+│   │   │   └── environment.ts
+│   │   ├── hacking-instructor
+│   │   │   ├── challenges
+│   │   │   │   ├── adminSection.ts
+│   │   │   │   ├── bonusPayload.ts
+│   │   │   │   ├── codingChallenges.ts
+│   │   │   │   ├── domXss.ts
+│   │   │   │   ├── exposedCredentials.ts
+│   │   │   │   ├── forgedFeedback.ts
+│   │   │   │   ├── loginAdmin.ts
+│   │   │   │   ├── loginBender.ts
+│   │   │   │   ├── loginJim.ts
+│   │   │   │   ├── passwordStrength.ts
+│   │   │   │   ├── privacyPolicy.ts
+│   │   │   │   ├── reflectedXss.ts
+│   │   │   │   ├── scoreBoard.ts
+│   │   │   │   └── viewBasket.ts
+│   │   │   ├── hacking-instructor.scss
+│   │   │   ├── helpers
+│   │   │   │   └── helpers.ts
+│   │   │   ├── index.ts
+│   │   │   └── tutorialUnavailable.ts
+│   │   ├── index.html
+│   │   ├── karma.conf.js
+│   │   ├── main.ts
+│   │   ├── styles.scss
+│   │   ├── test.ts
+│   │   ├── theme.scss
+│   │   ├── tsconfig.app.json
+│   │   └── tsconfig.spec.json
+│   ├── .stylelintrc.js
+│   ├── tsconfig.base.json
+│   ├── tsconfig.json
+│   └── webpack.angular.js
+├── ftp
+│   ├── acquisitions.md
+│   ├── announcement_encrypted.md
+│   ├── coupons_2013.md.bak
+│   ├── eastere.gg
+│   ├── encrypt.pyc
+│   ├── incident-support.kdbx
+│   ├── package.json.bak
+│   ├── package-lock.json.bak
+│   ├── quarantine
+│   │   ├── juicy_malware_linux_amd_64.url
+│   │   ├── juicy_malware_linux_arm_64.url
+│   │   ├── juicy_malware_macos_64.url
+│   │   └── juicy_malware_windows_64.exe.url
+│   └── suspicious_errors.yml
+├── .gitignore
+├── Gruntfile.js
+├── HALL_OF_FAME.md
+├── i18n
+│   └── .gitkeep
+├── lib
+│   ├── accuracy.ts
+│   ├── antiCheat.ts
+│   ├── botUtils.ts
+│   ├── challengeUtils.ts
+│   ├── codingChallenges.ts
+│   ├── config.types.ts
+│   ├── insecurity.ts
+│   ├── is-docker.ts
+│   ├── is-heroku.ts
+│   ├── is-windows.ts
+│   ├── logger.ts
+│   ├── noUpdate.ts
+│   ├── startup
+│   │   ├── cleanupFtpFolder.ts
+│   │   ├── customizeApplication.ts
+│   │   ├── customizeEasterEgg.ts
+│   │   ├── registerWebsocketEvents.ts
+│   │   ├── restoreOverwrittenFilesWithOriginals.ts
+│   │   ├── validateChatBot.ts
+│   │   ├── validateConfig.ts
+│   │   ├── validateDependenciesBasic.ts
+│   │   ├── validateDependencies.ts
+│   │   └── validatePreconditions.ts
+│   ├── utils.ts
+│   └── webhook.ts
+├── LICENSE
+├── models
+│   ├── address.ts
+│   ├── basketitem.ts
+│   ├── basket.ts
+│   ├── captcha.ts
+│   ├── card.ts
+│   ├── challenge.ts
+│   ├── complaint.ts
+│   ├── delivery.ts
+│   ├── feedback.ts
+│   ├── hint.ts
+│   ├── imageCaptcha.ts
+│   ├── index.ts
+│   ├── memory.ts
+│   ├── privacyRequests.ts
+│   ├── product.ts
+│   ├── quantity.ts
+│   ├── recycle.ts
+│   ├── relations.ts
+│   ├── securityAnswer.ts
+│   ├── securityQuestion.ts
+│   ├── user.ts
+│   └── wallet.ts
+├── .npmrc
+├── package.json
+├── README.md
+├── REFERENCES.md
+├── routes
+│   ├── 2fa.ts
+│   ├── address.ts
+│   ├── angular.ts
+│   ├── appConfiguration.ts
+│   ├── appVersion.ts
+│   ├── authenticatedUsers.ts
+│   ├── b2bOrder.ts
+│   ├── basketItems.ts
+│   ├── basket.ts
+│   ├── captcha.ts
+│   ├── changePassword.ts
+│   ├── chatbot.ts
+│   ├── checkKeys.ts
+│   ├── continueCode.ts
+│   ├── countryMapping.ts
+│   ├── coupon.ts
+│   ├── createProductReviews.ts
+│   ├── currentUser.ts
+│   ├── dataErasure.ts
+│   ├── dataExport.ts
+│   ├── delivery.ts
+│   ├── deluxe.ts
+│   ├── easterEgg.ts
+│   ├── errorHandler.ts
+│   ├── fileServer.ts
+│   ├── fileUpload.ts
+│   ├── imageCaptcha.ts
+│   ├── keyServer.ts
+│   ├── languages.ts
+│   ├── likeProductReviews.ts
+│   ├── logfileServer.ts
+│   ├── login.ts
+│   ├── memory.ts
+│   ├── metrics.ts
+│   ├── nftMint.ts
+│   ├── orderHistory.ts
+│   ├── order.ts
+│   ├── payment.ts
+│   ├── premiumReward.ts
+│   ├── privacyPolicyProof.ts
+│   ├── profileImageFileUpload.ts
+│   ├── profileImageUrlUpload.ts
+│   ├── quarantineServer.ts
+│   ├── recycles.ts
+│   ├── redirect.ts
+│   ├── repeatNotification.ts
+│   ├── resetPassword.ts
+│   ├── restoreProgress.ts
+│   ├── saveLoginIp.ts
+│   ├── search.ts
+│   ├── securityQuestion.ts
+│   ├── showProductReviews.ts
+│   ├── trackOrder.ts
+│   ├── updateProductReviews.ts
+│   ├── updateUserProfile.ts
+│   ├── userProfile.ts
+│   ├── verify.ts
+│   ├── videoHandler.ts
+│   ├── vulnCodeFixes.ts
+│   ├── vulnCodeSnippet.ts
+│   ├── wallet.ts
+│   └── web3Wallet.ts
+├── rsn
+│   ├── cache.json
+│   ├── rsn.ts
+│   ├── rsn-update.ts
+│   ├── rsnUtil.ts
+│   └── rsn-verbose.ts
+├── screenshots
+│   ├── git-stats.png
+│   ├── screenshot00.png
+│   ├── screenshot01.png
+│   ├── screenshot02.png
+│   ├── screenshot03.png
+│   ├── screenshot04.png
+│   ├── screenshot05.png
+│   ├── screenshot06.png
+│   ├── screenshot07.png
+│   ├── screenshot08.png
+│   ├── screenshot09.png
+│   ├── screenshot10.png
+│   ├── screenshot11.png
+│   ├── screenshot12.png
+│   ├── screenshot13.png
+│   └── slideshow.gif
+├── SECURITY.md
+├── server.ts
+├── SOLUTIONS.md
+├── Structure.txt
+├── swagger.yml
+├── test
+│   ├── api
+│   │   ├── 2faSpec.ts
+│   │   ├── addressApiSpec.ts
+│   │   ├── administrationApiSpec.ts
+│   │   ├── angularDistSpec.ts
+│   │   ├── apiSpec.ts
+│   │   ├── authenticatedUsersSpec.ts
+│   │   ├── b2bOrderSpec.ts
+│   │   ├── basketApiSpec.ts
+│   │   ├── basketItemApiSpec.ts
+│   │   ├── challengeApiSpec.ts
+│   │   ├── chatBotSpec.ts
+│   │   ├── complaintApiSpec.ts
+│   │   ├── countryMapppingSpec.ts
+│   │   ├── dataExportApiSpec.ts
+│   │   ├── deliveryApiSpec.ts
+│   │   ├── deluxeApiSpec.ts
+│   │   ├── erasureRequestApiSpec.ts
+│   │   ├── feedbackApiSpec.ts
+│   │   ├── fileServingSpec.ts
+│   │   ├── fileUploadSpec.ts
+│   │   ├── ftpFolderSpec.ts
+│   │   ├── httpSpec.ts
+│   │   ├── internetResourcesSpec.ts
+│   │   ├── languagesSpec.ts
+│   │   ├── loginApiSpec.ts
+│   │   ├── memoryApiSpec.ts
+│   │   ├── metricsApiSpec.ts
+│   │   ├── orderHistoryApiSpec.ts
+│   │   ├── passwordApiSpec.ts
+│   │   ├── paymentApiSpec.ts
+│   │   ├── privacyRequestApiSpec.ts
+│   │   ├── productApiSpec.ts
+│   │   ├── productReviewApiSpec.ts
+│   │   ├── profileImageUploadSpec.ts
+│   │   ├── promotionVideoSpec.ts
+│   │   ├── quantityApiSpec.ts
+│   │   ├── recycleApiSpec.ts
+│   │   ├── redirectSpec.ts
+│   │   ├── repeatNotificationSpec.ts
+│   │   ├── searchApiSpec.ts
+│   │   ├── securityAnswerApiSpec.ts
+│   │   ├── securityQuestionApiSpec.ts
+│   │   ├── socketSpec.ts
+│   │   ├── trackResultApiSpec.ts
+│   │   ├── userApiSpec.ts
+│   │   ├── userProfileSpec.ts
+│   │   ├── vulnCodeFixesSpec.ts
+│   │   ├── vulnCodeSnippetSpec.ts
+│   │   ├── walletApiSpec.ts
+│   │   └── web3Spec.ts
+│   ├── apiTestsSetupJest.ts
+│   ├── apiTestsSetup.ts
+│   ├── apiTestsTeardown.ts
+│   ├── cypress
+│   │   ├── e2e
+│   │   │   ├── administration.spec.ts
+│   │   │   ├── b2bOrder.spec.ts
+│   │   │   ├── basket.spec.ts
+│   │   │   ├── changePassword.spec.ts
+│   │   │   ├── chatbot.spec.ts
+│   │   │   ├── complain.spec.ts
+│   │   │   ├── contact.spec.ts
+│   │   │   ├── dataErasure.spec.ts
+│   │   │   ├── dataExport.spec.ts
+│   │   │   ├── deluxe.spec.ts
+│   │   │   ├── directAccess.spec.ts
+│   │   │   ├── forgedJwt.spec.ts
+│   │   │   ├── forgotPassword.spec.ts
+│   │   │   ├── geoStalking.spec.ts
+│   │   │   ├── login.spec.ts
+│   │   │   ├── metrics.spec.ts
+│   │   │   ├── noSql.spec.ts
+│   │   │   ├── privacyPolicy.spec.ts
+│   │   │   ├── profile.spec.ts
+│   │   │   ├── publicFtp.spec.ts
+│   │   │   ├── redirect.spec.ts
+│   │   │   ├── register.spec.ts
+│   │   │   ├── restApi.spec.ts
+│   │   │   ├── scoreBoard.spec.ts
+│   │   │   ├── search.spec.ts
+│   │   │   ├── tokenSale.spec.ts
+│   │   │   ├── totpSetup.spec.ts
+│   │   │   └── trackOrder.spec.ts
+│   │   ├── support
+│   │   │   ├── commands.ts
+│   │   │   ├── e2e.ts
+│   │   │   └── setup.ts
+│   │   └── tsconfig.json
+│   ├── files
+│   │   ├── announcement.md
+│   │   ├── arbitraryFileWrite.zip
+│   │   ├── decrypt_bruteforce.py
+│   │   ├── decrypt.py
+│   │   ├── deprecatedTypeForServer.xml
+│   │   ├── encrypt.py
+│   │   ├── invalidProfileImageType.docx
+│   │   ├── invalidSizeForClient.pdf
+│   │   ├── invalidSizeForServer.pdf
+│   │   ├── invalidTypeForClient.exe
+│   │   ├── maxSizeForServer.xml
+│   │   ├── outdatedLocalBackup.json
+│   │   ├── passwordProtected.zip
+│   │   ├── validLocalBackup.json
+│   │   ├── validProfileImage.jpg
+│   │   ├── validSizeAndTypeForClient.pdf
+│   │   ├── videoExploit.zip
+│   │   ├── xxeBillionLaughs.xml
+│   │   ├── xxeDevRandom.xml
+│   │   ├── xxeForLinux.xml
+│   │   ├── xxeForWindows.xml
+│   │   ├── xxeQuadraticBlowup.xml
+│   │   └── yamlBomb.yml
+│   ├── server
+│   │   ├── angularSpec.ts
+│   │   ├── appConfigurationSpec.ts
+│   │   ├── appVersionSpec.ts
+│   │   ├── b2bOrderSpec.ts
+│   │   ├── blueprintSpec.ts
+│   │   ├── botUtilsSpec.ts
+│   │   ├── challengeCountryMappingSpec.ts
+│   │   ├── challengeTutorialSequenceSpec.ts
+│   │   ├── challengeUtilsSpec.ts
+│   │   ├── chatBotValidationSpec.ts
+│   │   ├── codeSnippetSpec.ts
+│   │   ├── codingChallengeFixesSpec.ts
+│   │   ├── configValidationSpec.ts
+│   │   ├── continueCodeSpec.ts
+│   │   ├── countryMappingSpec.ts
+│   │   ├── currentUserSpec.ts
+│   │   ├── easterEggSpec.ts
+│   │   ├── fileServerSpec.ts
+│   │   ├── fileUploadSpec.ts
+│   │   ├── insecuritySpec.ts
+│   │   ├── keyServerSpec.ts
+│   │   ├── preconditionValidationSpec.ts
+│   │   ├── premiumRewardSpec.ts
+│   │   ├── redirectSpec.ts
+│   │   ├── utilsSpec.ts
+│   │   ├── verifySpec.ts
+│   │   └── webhookSpec.ts
+│   └── smoke
+│       ├── Dockerfile
+│       └── smoke-test.sh
+├── tsconfig.json
+├── uploads
+│   └── complaints
+│       └── .gitkeep
+├── views
+│   ├── dataErasureForm.hbs
+│   ├── dataErasureResult.hbs
+│   ├── promotionVideo.pug
+│   ├── themes
+│   │   └── themes.ts
+│   └── userProfile.pug
+├── .well-known
+│   ├── csaf
+│   │   ├── 2017
+│   │   │   ├── juice-shop-sa-20200513-express-jwt.json
+│   │   │   ├── juice-shop-sa-20200513-express-jwt.json.asc
+│   │   │   └── juice-shop-sa-20200513-express-jwt.json.sha512
+│   │   ├── 2021
+│   │   │   ├── juice-shop-sa-20211014-proto.json
+│   │   │   ├── juice-shop-sa-20211014-proto.json.asc
+│   │   │   └── juice-shop-sa-20211014-proto.json.sha512
+│   │   ├── 2024
+│   │   │   ├── juice-shop-sa-disclaimer.json
+│   │   │   ├── juice-shop-sa-disclaimer.json.asc
+│   │   │   └── juice-shop-sa-disclaimer.json.sha512
+│   │   ├── changes.csv
+│   │   ├── index.txt
+│   │   └── provider-metadata.json
+│   └── security.txt
+└── .zap
+    └── rules.tsv
+
+137 directories, 1130 files
