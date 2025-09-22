@@ -29,7 +29,7 @@ vagrant/.vagrant/
 *.log
 JSON
 JSON.map
-frontend/src/**/*.js
+#frontend/src/**/*.js
 /bom.json
 /bom.xml
 
