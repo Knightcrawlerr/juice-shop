@@ -33,13 +33,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadlessNoSandbox'],
-    customLaunchers: {
-      ChromiumHeadlessNoSandbox: {
-        base: 'ChromiumHeadlessNoSandbox',
-        flags: ['--no-sandbox', '--disable-setuid-sandbox']
-      }
-    },
+    browsers: ['ChromeHeadless'],
     singleRun: false,
     restartOnFileChange: true
   })

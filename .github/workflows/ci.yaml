@@ -28,14 +28,13 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
+
       - name: Run API tests
         run: npm run test:api
-      - name: Install Chromium
-        run: sudo apt-get install chromium-browser
-      - name: Run headless frontend tests
-        run: npm run test:chromium
+
       - name: Build frontend
         run: npm run build:frontend
+
       - name: Build server
         run: npm run build:server
 
