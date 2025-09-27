@@ -100,6 +100,6 @@ jobs:
           cd eks-secobs
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add apps/Juice-shop/deployment.yml
+          git add apps/juice-shop/values.yml
           git commit -m "[CI]: Update Juice Shop image to ${{ needs.docker-build.outputs.SHORT_SHA }}"
           git push origin main
