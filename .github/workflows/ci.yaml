@@ -93,7 +93,7 @@ jobs:
       - name: Update Juice Shop image in Kubernetes deployment
         run: |
           cd eks-secobs
-          sed -i "s|image: .*|image: ${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:${{ github.ref_name }}-${{ needs.docker-build.outputs.SHORT_SHA }}|g" apps/Juice-shop/deployment.yml
+          sed -i "s|tag: .*|tag: \"${{ github.ref_name }}-${{ needs.docker-build.outputs.SHORT_SHA }}\"|g" apps/juice-shop/values.yaml
 
       - name: Commit and push changes
         run: |
