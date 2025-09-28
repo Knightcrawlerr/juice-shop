@@ -96,7 +96,7 @@ jobs:
           if [ "${{ github.ref_name }}" == "main" ]; then
             sed -i "s|tag: .*|tag: \"${{ github.ref_name }}-${{ needs.docker-build.outputs.SHORT_SHA }}\"|g" apps/juice-shop/values-prod.yaml
           else
-            sed -i "s|repository: .*|repository: \"${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop\"|g" apps/juice-shop/values-dev.yaml
+            sed -i "s|tag: .*|tag: \"${{ github.ref_name }}-${{ needs.docker-build.outputs.SHORT_SHA }}\"|g" apps/juice-shop/values-dev.yaml
           fi
       - name: Commit and push changes
         run: |
@@ -112,7 +112,7 @@ jobs:
           fi
           git push origin main
 
-          
+
 
 
           
