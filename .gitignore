@@ -7,7 +7,6 @@ app/
 uploads/complaints/*.*
 !uploads/complaints/.gitkeep
 ftp/legal.md
-package-lock.json
 i18n/*.json
 i18n/*.invalid
 !frontend/src/assets/i18n/*.json
@@ -15,6 +14,7 @@ i18n/*.invalid
 data/chatbot/*.*
 !data/chatbot/.gitkeep
 /data/juiceshop.sqlite-journal
+structure.txt
 
 # Build
 .nyc_output/
@@ -29,7 +29,7 @@ vagrant/.vagrant/
 *.log
 JSON
 JSON.map
-frontend/src/**/*.js
+#frontend/src/**/*.js
 /bom.json
 /bom.xml
 
