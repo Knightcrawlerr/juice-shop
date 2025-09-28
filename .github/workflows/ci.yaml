@@ -93,15 +93,23 @@ jobs:
       - name: Update Juice Shop image in Kubernetes deployment
         run: |
           cd eks-secobs
-          sed -i "s|tag: .*|tag: \"${{ github.ref_name }}-${{ needs.docker-build.outputs.SHORT_SHA }}\"|g" apps/juice-shop/values.yaml
-
+          if [ "${{ github.ref_name }}" == "main" ]; then
+            sed -i "s|tag: .*|tag: \"${{ github.ref_name }}-${{ needs.docker-build.outputs.SHORT_SHA }}\"|g" apps/juice-shop/values-prod.yaml
+          else
+            sed -i "s|repository: .*|repository: \"${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop\"|g" apps/juice-shop/values-dev.yaml
+          fi
       - name: Commit and push changes
         run: |
           cd eks-secobs
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add apps/juice-shop/values.yaml
-          git commit -m "[CI]: Update Juice Shop image to ${{ needs.docker-build.outputs.SHORT_SHA }}"
+          if [ "${{ github.ref_name }}" == "main" ]; then
+            git add apps/juice-shop/values-prod.yaml
+            git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.SHORT_SHA }}"
+          else
+            git add apps/juice-shop/values-dev.yaml
+            git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.SHORT_SHA }}"
+          fi
           git push origin main
 
 
