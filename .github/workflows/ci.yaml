@@ -103,3 +103,6 @@ jobs:
           git add apps/juice-shop/values.yaml
           git commit -m "[CI]: Update Juice Shop image to ${{ needs.docker-build.outputs.SHORT_SHA }}"
           git push origin main
+
+
+          
