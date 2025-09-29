@@ -66,5 +66,4 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:latest,${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:prod-${{ steps.vars.outputs.SHORT_SHA }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:prod-${{ steps.vars.outputs.SHORT_SHA }}
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:pr-${{ steps.vars.outputs.SHORT_SHA }},mode=max
+          
