@@ -24,4 +24,4 @@ WORKDIR /juice-shop
 COPY --from=builder --chown=65532:65532 /juice-shop ./
 
 EXPOSE 3000 
-CMD ["/juice-shop/build/app.js"]
+CMD ["node", "/juice-shop/build/app.js"]
