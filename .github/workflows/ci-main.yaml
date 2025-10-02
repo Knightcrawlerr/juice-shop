@@ -32,10 +32,10 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:latest,${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:prod-${{ steps.vars.outputs.SHORT_SHA }}
-          
+
   updateK8s:
     runs-on: ubuntu-latest
-    needs: docker-build 
+    needs: docker-build
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -47,7 +47,7 @@ jobs:
         run: |
           cd eks-secobs
           sed -i "s|tag: .*|tag: \"prod-${{ needs.docker-build.outputs.SHORT_SHA }}\"|g" apps/juice-shop/values-prod.yaml
-         
+
       - name: Commit and push changes
         run: |
           cd eks-secobs
@@ -56,5 +56,3 @@ jobs:
           git add apps/juice-shop/values-prod.yaml
           git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.SHORT_SHA }}"
           git push origin main
-
-          
