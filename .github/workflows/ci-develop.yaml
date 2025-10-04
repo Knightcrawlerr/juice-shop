@@ -50,13 +50,13 @@ jobs:
       - name: Get the short SHA
         id: vars
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
-# ✅ Build locally first (with cache), then scan before push
       - name: Build Docker image (no push)
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
           push: false
+          load: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:dev-${{ steps.vars.outputs.SHORT_SHA }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:cache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/juice-shop:cache,mode=max
@@ -71,7 +71,7 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
 
-      - name: Push Docker image (develop)
+      - name: Push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
