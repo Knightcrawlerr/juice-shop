@@ -33,7 +33,7 @@ jobs:
       - name: Build server
         run: npm run build:server
 
-  security-check:
+  security-scan:
     runs-on: ubuntu-latest
     needs: build-lint-test
     steps:
@@ -48,10 +48,26 @@ jobs:
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
 
+      - name: Checkout infrastructure repository
+        uses: actions/checkout@v5
+        with:
+          repository: Knightcrawlerr/eks-secobs
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: eks-secobs
+
+      - name: Trivy config scan
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: config
+          scan-ref: ./eks-secobs/apps/juice-shop
+          format: 'table'
+          exit-code: '0' 
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
         
   docker-build:
     runs-on: ubuntu-latest
-    needs: build-lint-test
+    needs: security-scan
     outputs:
       SHORT_SHA: ${{ steps.vars.outputs.SHORT_SHA }}
     steps:
