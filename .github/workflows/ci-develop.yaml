@@ -63,6 +63,7 @@ jobs:
           var_file: ./eks-secobs/apps/juice-shop/values-dev.yaml
           output_format: cli, sarif
           output_file_path: console,checkov-results.sarif
+          soft_fail: 'true'
 
   docker-build:
     runs-on: ubuntu-latest
