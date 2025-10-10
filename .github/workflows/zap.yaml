@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zap-report  
-          path: owsp-zap_report.html
+          path: owsp-zap-report.html
