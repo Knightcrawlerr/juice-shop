@@ -24,12 +24,11 @@ jobs:
         run: |
             nohup npm start &>/dev/null &
             sleep 20
-      - name: Run ZAP baseline scan
-        uses: zaproxy/action-baseline@master
+      - name: Run ZAP scan
+        uses: zaproxy/action-full-scan@master
         with:
           target: "http://localhost:3000"
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: "-a -j"
+          cmd_options: "-I"
           allow_issue_writing: false
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
