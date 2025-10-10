@@ -25,7 +25,7 @@ jobs:
             nohup npm start &>/dev/null &
             sleep 20
       - name: Run ZAP baseline scan
-        uses: zaproxy/action-baseline@v0.12.0
+        uses: zaproxy/action-baseline@master
         with:
           target: "http://localhost:3000"
           rules_file_name: '.zap/rules.tsv'
