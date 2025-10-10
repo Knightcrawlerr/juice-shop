@@ -30,6 +30,7 @@ jobs:
           target: "http://localhost:3000"
           rules_file_name: '.zap/rules.tsv'
           cmd_options: "-a -j"
+          allow_issue_writing: false
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
