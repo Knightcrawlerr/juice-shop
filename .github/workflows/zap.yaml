@@ -33,9 +33,3 @@ jobs:
           allow_issue_writing: false
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload ZAP Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: zap-report  
-          path: owsp-zap-report.html
