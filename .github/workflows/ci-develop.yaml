@@ -53,6 +53,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
         with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           sarif_file: trivy-results.sarif
 
       - name: Checkout infrastructure repository
@@ -76,6 +77,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
         with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           sarif_file: checkov-results.sarif
 
   docker-build:
