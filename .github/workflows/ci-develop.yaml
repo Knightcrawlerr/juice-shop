@@ -87,8 +87,9 @@ jobs:
     needs: security-scan
     env:
       REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository_owner }}/juice-shop
+      IMAGE_NAME: ${{ github.repository }}
     outputs:
+      lowercase_repo: ${{ steps.lowercase_repo.outputs.lowercase_repo }}
       image_tag: ${{ steps.set_output.outputs.image_tag }}
     steps:
       - name: Checkout repository
@@ -101,6 +102,10 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Lowercase repository name
+        id: lowercase_repo
+        run: echo "lowercase_repo=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -131,7 +136,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ github.sha }}
+          image-ref: ${{ env.REGISTRY }}/${{ steps.lowercase_repo.outputs.lowercase_repo }}:sha-${{ github.sha }}
           format: "table"
           exit-code: "0"
           severity: "CRITICAL,HIGH"
