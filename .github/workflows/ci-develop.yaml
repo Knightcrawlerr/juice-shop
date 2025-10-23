@@ -87,7 +87,7 @@ jobs:
     needs: security-scan
     env:
       REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      IMAGE_NAME: ${{ github.repository_owner }}/juice-shop
     outputs:
       image_tag: ${{ steps.set_output.outputs.image_tag }}
     steps:
