@@ -88,10 +88,10 @@ jobs:
         run: |         
           # Update the Helm values file
           cd eks-secobs
-          sed -i "s|tag: .*|tag: \"sha-${{ github.sha }}\"|g" apps/juice-shop/values-dev.yaml
+          sed -i "s|tag: .*|tag: \"sha-${{ github.sha }}\"|g" apps/juice-shop/values-prod.yaml
       - name: Commit changes
         run: |
           cd eks-secobs
-          git add apps/juice-shop/values-dev.yaml
+          git add apps/juice-shop/values-prod.yaml
           git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.image_tag }} [skip ci]" || echo "No changes to commit"
           git push origin main
