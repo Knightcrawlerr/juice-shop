@@ -126,13 +126,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Debug tags
-        run: |
-          echo "IMAGE NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
-          echo "TAGS FROM META:"
-          echo "${{ steps.meta.outputs.tags }}"
-
-          
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.33.1
         with:
