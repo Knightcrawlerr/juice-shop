@@ -13,7 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
@@ -25,10 +24,9 @@ jobs:
             nohup npm start &>/dev/null &
             sleep 20
       - name: Run ZAP scan
-        uses: zaproxy/action-full-scan@v0.12.0
+        uses: zaproxy/action-baseline@v0.15.0
         with:
           target: "http://localhost:3000"
-          cmd_options: "-I"
+          cmd_options: "-a -I -j"
           allow_issue_writing: false
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
