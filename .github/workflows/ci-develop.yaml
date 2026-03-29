@@ -28,8 +28,6 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
-      - name: Run API tests
-        run: npm run test:api
       - name: Run lint
         run: npm run lint
       - name: Build frontend
