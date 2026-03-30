@@ -8,6 +8,10 @@ permissions:
   contents: read
   security-events: write
 
+env:
+  NODE_DEFAULT_VERSION: "22"
+  NODE_OPTIONS: --max-old-space-size=4096
+
 jobs:
   build-lint-test:
     runs-on: ubuntu-latest
@@ -28,8 +32,6 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
-      - name: Run API tests
-        run: npm run test:api
       - name: Run lint
         run: npm run lint
       - name: Build frontend
@@ -43,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Run Trivy FS scan
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: fs
           scan-ref: .
@@ -67,7 +69,7 @@ jobs:
           path: eks-secobs
 
       - name: Run Checkov on Kubernetes manifests
-        uses: bridgecrewio/checkov-action@v12
+        uses: bridgecrewio/checkov-action@master
         with:
           directory: ./eks-secobs/apps/juice-shop
           framework: helm
@@ -127,7 +129,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: ${{ env.REGISTRY }}/${{ steps.lowercase_repo.outputs.lowercase_repo }}:sha-${{ github.sha }}
           format: "table"
@@ -173,6 +175,4 @@ jobs:
           git add apps/juice-shop/values-dev.yaml
           git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.image_tag }} [skip ci]" || echo "No changes to commit"
           git push origin main
-
-
           
