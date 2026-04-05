@@ -178,4 +178,3 @@ jobs:
           git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.image_tag }} [skip ci]" || echo "No changes to commit"
           git push origin main
           
-          
