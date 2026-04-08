@@ -78,7 +78,7 @@ jobs:
           var_file: ./eks-secobs/apps/juice-shop/values-dev.yaml
           output_format: cli, sarif
           output_file_path: console,checkov-results.sarif
-          soft_fail: "true"
+          # soft_fail: "false"
 
       - name: Upload SARIF report to GitHub
         uses: github/codeql-action/upload-sarif@v3
