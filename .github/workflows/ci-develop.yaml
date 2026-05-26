@@ -199,4 +199,4 @@ jobs:
           sed -i "s|tag: .*|tag: \"sha-${{ github.sha }}\"|g" apps/juice-shop/values-dev.yaml
           git add apps/juice-shop/values-dev.yaml
           git diff --cached --quiet || git commit -m "ci: juice-shop prod → sha-${{ needs.container-scan-push.outputs.image-tag }} [skip ci]"
-          git push origin HEAD:develop
+          git push origin main
