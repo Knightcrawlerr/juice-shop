@@ -7,6 +7,7 @@ on:
 permissions:
   contents: read
   security-events: write
+  packages: write
 
 env:
   REGISTRY: ghcr.io
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.2
-      - name: Run Trivy FS scan
+      - name: Run Trivy FS scan - SARIF
         uses: aquasecurity/trivy-action@v0.36.0 
         with:
           scan-type: fs
@@ -35,6 +36,10 @@ jobs:
           sarif_file: trivy-fs-results.sarif
           category: trivy-fs
 
+      - name: Trivy FS scan - JSON
+        run: |
+          trivy fs --format json --output trivy-fs-results.json --severity CRITICAL,HIGH --ignore-unfixed .
+
       - name: upload Trivy FS results to S3
         if: always()
         env:
@@ -42,7 +47,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          aws s3 cp trivy-fs-results.sarif s3://${{ secrets.S3_BUCKET_NAME }}/trivy-fs/$(date +%Y-%m-%d)/${{ github.sha }}.sarif
+          aws s3 cp trivy-fs-results.json s3://${{ secrets.S3_BUCKET_NAME }}/trivy-fs/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
   sca:
     runs-on: ubuntu-latest
@@ -135,7 +140,7 @@ jobs:
           load: true
           tags: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:sha-${{ github.sha }}
 
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner - SARIF
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:sha-${{ github.sha }}
@@ -151,6 +156,10 @@ jobs:
         with:
           sarif_file: trivy-container-results.sarif
           category: trivy-container
+        
+      - name: Run Trivy vulnerability scanner - JSON
+        run: |
+          trivy image --format json --output trivy-container-results.json --severity CRITICAL,HIGH --ignore-unfixed ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:sha-${{ github.sha }}
 
       - name: Upload Trivy container scan results to s3
         if: always()
@@ -159,7 +168,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
-          aws s3 cp trivy-container-results.sarif s3://${{ secrets.S3_BUCKET_NAME }}/trivy-image/$(date +%Y-%m-%d)/${{ github.sha }}.sarif
+          aws s3 cp trivy-container-results.json s3://${{ secrets.S3_BUCKET_NAME }}/trivy-image/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
       - name: Push Docker Image
         uses: docker/build-push-action@v7.2.0
@@ -171,7 +180,7 @@ jobs:
 
   deploy-develop:
     runs-on: ubuntu-latest
-    needs: container-scan-push
+    needs: container-scan-push 
     steps:
       - uses: actions/checkout@v6.0.2
         with:

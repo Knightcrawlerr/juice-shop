@@ -35,6 +35,7 @@ jobs:
         uses: zaproxy/action-baseline@v0.15.0
         with:
           target: "http://localhost:3000"
+          rules_file_name: ".zap/rules.tsv"
           cmd_options: "-a -I -j"
           allow_issue_writing: false
 
@@ -45,4 +46,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          aws s3 cp zap-baseline.json s3://${{ secrets.S3_BUCKET_NAME }}/zap/$(date +%Y-%m-%d)/${{ github.sha }}.json
+          aws s3 cp report_json.json s3://${{ secrets.S3_BUCKET_NAME }}/zap/$(date +%Y-%m-%d)/${{ github.sha }}.json

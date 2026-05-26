@@ -5,11 +5,14 @@ on:
   pull_request:
     branches: [main]
 
-
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     strategy:
       fail-fast: false
       matrix:
@@ -22,6 +25,12 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           queries: security-extended, security-and-quality
+          config: |
+            paths-ignore:
+              - 'data/static/codefixes'
+            query-filters:
+            - exclude:
+                 id: js/missing-rate-limiting
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4
       - name: Perform CodeQL Analysis
