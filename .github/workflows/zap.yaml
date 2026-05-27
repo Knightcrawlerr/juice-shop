@@ -9,7 +9,6 @@ on:
 jobs:
  zap-scan:
     runs-on: ubuntu-latest
-    name: "Run ZAP Scan"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
