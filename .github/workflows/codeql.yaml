@@ -4,6 +4,7 @@ on:
     branches: [develop, main]
   pull_request:
     branches: [main]
+
 jobs:
   analyze:
     name: Analyze
@@ -18,12 +19,18 @@ jobs:
         language: [javascript]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.2
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: ${{ matrix.language }}
           queries: security-extended, security-and-quality
+          config: |
+            paths-ignore:
+              - 'data/static/codefixes'
+            query-filters:
+            - exclude:
+                 id: js/missing-rate-limiting
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4
       - name: Perform CodeQL Analysis

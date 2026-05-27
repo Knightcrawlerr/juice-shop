@@ -337,6 +337,8 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   })
   app.use(morgan('combined', { stream: accessLogStream }))
 
+  app.use(morgan('combined', { stream: process.stdout }))
+
   // vuln-code-snippet start resetPasswordMortyChallenge
   /* Rate limiting */
   app.enable('trust proxy')

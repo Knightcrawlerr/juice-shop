@@ -3,95 +3,107 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "*.md"
+      - "LICENSE"
+      - "screenshots/**"
+
+permissions:
+  contents: read
+  security-events: write
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
-  docker-build:
+  docker-push:
     runs-on: ubuntu-latest
-    env:
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
     outputs:
-      lowercase_repo: ${{ steps.lowercase_repo.outputs.lowercase_repo }}
-      image_tag: ${{ steps.set_output.outputs.image_tag }}
+      image-tag: ${{ steps.tag.outputs.short_sha }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4.1.0
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4.2.0 
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Lowercase repository name
-        id: lowercase_repo
-        run: echo "lowercase_repo=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
-
-      - name: Extract metadata (tags, labels) for Docker
+        id: repo
+        run: echo "name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+      
+      - name: Short SHA
+        id: tag
+        run: echo "short_sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
+      - name: Docker Metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6.1.0
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
             type=sha,format=long
             type=ref,event=branch
-            latest
-      - name: Build Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./Dockerfile
-          push: false
-          load: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
-        with:
-          image-ref: ${{ env.REGISTRY }}/${{ steps.lowercase_repo.outputs.lowercase_repo }}:sha-${{ github.sha }}
-          format: "table"
-          exit-code: "0"
-          severity: "CRITICAL,HIGH"
-          ignore-unfixed: true
-          vuln-type: "os,library"
-
-      - name: Push Docker image
-        uses: docker/build-push-action@v6
+      - name: Build and Push Production Docker Image
+        uses: docker/build-push-action@v7.2.0
         with:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      
+      - name:  Post push production image audit with Trivy - SARIF
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:sha-${{ github.sha }}
+          format: sarif
+          output: trivy-container-results.sarif
+          severity: "CRITICAL,HIGH"
+          ignore-unfixed: true
+          vuln-type: "os,library"
+        
+      - name: Upload Trivy image scan SARIF report to Github Security
+        uses: github/codeql-action/upload-sarif@v4 
+        if: always()
+        with:
+          sarif_file: trivy-container-results.sarif
+          category: trivy-container
+        
+      - name: Run Trivy vulnerability scanner - JSON
+        run: |
+          trivy image --format json --output trivy-container-results.json --severity CRITICAL,HIGH --ignore-unfixed ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:sha-${{ github.sha }}
 
-      - name: Set image tag output
-        id: set_output
-        run: echo "image_tag=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
+      - name: Upload Trivy container scan results to s3
+        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+        run: |
+          aws s3 cp trivy-container-results.json s3://${{ vars.S3_BUCKET_NAME }}/trivy-image/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
-  update-k8s-deployment:
+  deploy-develop:
     runs-on: ubuntu-latest
-    needs: docker-build
+    needs: docker-push
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.2
         with:
           repository: Knightcrawlerr/eks-secobs
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: eks-secobs
 
-      - name: Set up Git
+      - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      - name: Update Juice Shop image in Kubernetes deployment
-        run: |         
-          # Update the Helm values file
-          cd eks-secobs
-          sed -i "s|tag: .*|tag: \"sha-${{ github.sha }}\"|g" apps/juice-shop/values-prod.yaml
-      - name: Commit changes
+      
+      - name: Update helm values file with new image tag for production deployment
         run: |
           cd eks-secobs
+          sed -i "s|tag: .*|tag: \"sha-${{ github.sha }}\"|g" apps/juice-shop/values-prod.yaml
           git add apps/juice-shop/values-prod.yaml
-          git commit -m "[CI]: Updated Juice Shop image to ${{ needs.docker-build.outputs.image_tag }} [skip ci]" || echo "No changes to commit"
+          git diff --cached --quiet || git commit -m "ci: juice-shop prod → sha-${{ needs.docker-push.outputs.image-tag }} [skip ci]"
           git push origin main
+
+          
