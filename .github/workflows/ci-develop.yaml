@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - develop
+    paths-ignore:
+      - "*.md"
+      - "LICENSE"
+      - "screenshots/**"
 
 permissions:
   contents: read
@@ -30,7 +34,7 @@ jobs:
           exit-code: "0"
 
       - name: Upload Trivy FS SARIF report to Github Security
-        uses: github/codeql-action/upload-sarif@v3 
+        uses: github/codeql-action/upload-sarif@v4 
         if: always()
         with:
           sarif_file: trivy-fs-results.sarif
@@ -45,9 +49,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
-          aws s3 cp trivy-fs-results.json s3://${{ secrets.S3_BUCKET_NAME }}/trivy-fs/$(date +%Y-%m-%d)/${{ github.sha }}.json
+          aws s3 cp trivy-fs-results.json s3://${{ vars.S3_BUCKET_NAME }}/trivy-fs/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
   sca:
     runs-on: ubuntu-latest
@@ -68,9 +72,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
-          aws s3 cp npm-audit-results.json s3://${{ secrets.S3_BUCKET_NAME }}/sca/$(date +%Y-%m-%d)/${{ github.sha }}.json
+          aws s3 cp npm-audit-results.json s3://${{ vars.S3_BUCKET_NAME }}/sca/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
   build-lint-test:
     runs-on: ubuntu-latest
@@ -132,7 +136,7 @@ jobs:
             type=sha,format=long
             type=ref,event=branch
 
-      - name: Build Docker 
+      - name: Build Docker Image for scanning
         uses: docker/build-push-action@v7.2.0
         with:
           context: .
@@ -151,7 +155,7 @@ jobs:
           vuln-type: "os,library"
 
       - name: Upload Trivy image scan SARIF report to Github Security
-        uses: github/codeql-action/upload-sarif@v3 
+        uses: github/codeql-action/upload-sarif@v4 
         if: always()
         with:
           sarif_file: trivy-container-results.sarif
@@ -168,7 +172,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
-          aws s3 cp trivy-container-results.json s3://${{ secrets.S3_BUCKET_NAME }}/trivy-image/$(date +%Y-%m-%d)/${{ github.sha }}.json
+          aws s3 cp trivy-container-results.json s3://${{ vars.S3_BUCKET_NAME }}/trivy-image/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
       - name: Push Docker Image
         uses: docker/build-push-action@v7.2.0
