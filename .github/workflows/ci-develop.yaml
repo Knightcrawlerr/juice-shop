@@ -204,3 +204,4 @@ jobs:
           git add apps/juice-shop/values-dev.yaml
           git diff --cached --quiet || git commit -m "ci: juice-shop prod → sha-${{ needs.container-scan-push.outputs.image-tag }} [skip ci]"
           git push origin main
+          
