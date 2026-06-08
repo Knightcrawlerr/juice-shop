@@ -110,6 +110,7 @@ jobs:
     needs: [trivy-fs, sca, build-lint-test]
     outputs:
       image-tag: ${{ steps.tag.outputs.short_sha }}
+      image-digest: ${{ steps.push.outputs.digest}}
     steps:
       - uses: actions/checkout@v6.0.2
       - name: Set up Docker Buildx
@@ -175,6 +176,7 @@ jobs:
           aws s3 cp trivy-container-results.json s3://${{ vars.S3_BUCKET_NAME }}/trivy-image/$(date +%Y-%m-%d)/${{ github.sha }}.json
 
       - name: Push Docker Image
+        id: push
         uses: docker/build-push-action@v7.2.0
         with:
           context: .
@@ -200,7 +202,9 @@ jobs:
       - name: Update helm values file with new image tag for development deployment
         run: |
           cd eks-secobs
-          sed -i "s|tag: .*|tag: \"sha-${{ github.sha }}\"|g" apps/juice-shop/values-dev.yaml
+          DIGEST="${{ needs.container-scan-push.outputs.image-digest }}"
+          REPO="${{ env.REGISTRY }}/$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
+          sed -i "s|repository: .*|repository: ${REPO}@${DIGEST}|g" apps/juice-shop/values-dev.yaml
           git add apps/juice-shop/values-dev.yaml
-          git diff --cached --quiet || git commit -m "ci: juice-shop prod → sha-${{ needs.container-scan-push.outputs.image-tag }} [skip ci]"
+          git diff --cached --quiet || git commit -m "ci: juice-shop dev → ${DIGEST:7:19} [skip ci]"
           git push origin main
